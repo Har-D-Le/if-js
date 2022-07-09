@@ -3,8 +3,8 @@
     "eslint": "^8.19.0",
     "eslint-config-airbnb-base": "^15.0.0",
     "eslint-plugin-import": "^2.26.0",
-    "husky": "^8.0.1",
-    "prettier": "2.7.1"
+    "prettier": "2.7.1",
+    "husky": "^8.0.0"
   },
   "name": "if",
   "description": "",
@@ -90,8 +90,9 @@
     "wrappy": "^1.0.2"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "lint": "eslint main.js --fix"
+    "lint": "eslint main.js --fix",
+    "prepare": "husky install",
+    "prettier": "prettier --write *.js"
   },
   "repository": {
     "type": "git",
