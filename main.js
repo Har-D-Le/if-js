@@ -44,3 +44,51 @@ for (let i = 0; i < arrOfNumber.length; i += 1) {
     console.log(arrOfNumber[i]);
   }
 }
+
+function min(a, b) {
+  if (a < b) {
+    return a;
+  }
+  return b;
+}
+
+console.log(min(4, 7));
+
+const max = function (a, y) {
+  if (a > y) {
+    return a;
+  }
+  return y;
+};
+
+console.log(max(100, 98));
+
+const maxTwo = (c, d) => (c > d ? c : d);
+
+console.log(maxTwo(101, 22));
+
+const palindrome = (str) => {
+  const newStr = str.toLowerCase();
+  return newStr === newStr.split('').reverse().join('');
+};
+
+console.log(palindrome('мадам'));
+console.log(palindrome('пёс'));
+
+function getRandomIntInclusive(minRan, maxRan) {
+  return Math.floor(Math.random() * (maxRan - minRan + 1) + minRan);
+}
+
+const randomArr = [];
+
+for (let i = 0; i < 10; i += 1) {
+  const randomNum = getRandomIntInclusive(0, 100);
+  randomArr.push(randomNum);
+}
+
+const replaceToZero = (arrReplacement) => {
+  const newStr = arrReplacement.toString();
+  console.log(newStr.replaceAll('0', 'zero').split(','));
+};
+
+replaceToZero(randomArr);
