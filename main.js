@@ -92,3 +92,28 @@ const replaceToZero = (arrReplacement) => {
 };
 
 replaceToZero(randomArr);
+
+function sumLesson4(a) {
+  return function (b) {
+    return a + b;
+  };
+}
+
+console.log('sum:', sumLesson4(5)(2));
+
+const colors = ['magenta', 'cyan', 'firebrick', 'springgreen', 'skyblue'];
+const p = document.querySelectorAll('p');
+const makePainter = () => {
+  let i = 0;
+  return (e) => {
+    e.target.style.color = colors[i];
+    i++;
+    if (i >= colors.length) {
+      i = 0;
+    }
+  };
+};
+p.forEach((item) => {
+  const painter = makePainter();
+  item.addEventListener('click', painter);
+});
