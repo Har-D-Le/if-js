@@ -45,6 +45,8 @@ for (let i = 0; i < arrOfNumber.length; i += 1) {
   }
 }
 
+// lesson 3
+
 function min(a, b) {
   if (a < b) {
     return a;
@@ -93,6 +95,8 @@ const replaceToZero = (arrReplacement) => {
 
 replaceToZero(randomArr);
 
+// lesson 4
+
 function sumLesson4(a) {
   return function (b) {
     return a + b;
@@ -117,3 +121,71 @@ p.forEach((item) => {
   const painter = makePainter();
   item.addEventListener('click', painter);
 });
+
+// lesson 5
+
+const transformDate = (date) => {
+  const arrayDate = date.split('-').reverse();
+  for (let i = 0; i < arrayDate.length; i += 1) {
+    const newDate = arrayDate.join('.');
+    console.log(newDate);
+    return newDate;
+  }
+};
+
+transformDate('2020-11-26');
+
+const data = [
+  {
+    country: 'Russia',
+    city: 'Saint Petersburg',
+    hotel: 'Hotel Leopold',
+  },
+  {
+    country: 'Spain',
+    city: 'Santa Cruz de Tenerife',
+    hotel: 'Apartment Sunshine',
+  },
+  {
+    country: 'Slowakia',
+    city: 'Vysokie Tatry',
+    hotel: 'Villa Kunerad',
+  },
+  {
+    country: 'Germany',
+    city: 'Berlin',
+    hotel: 'Hostel Friendship',
+  },
+  {
+    country: 'Indonesia',
+    city: 'Bali',
+    hotel: 'Ubud Bali Resort&SPA',
+  },
+  {
+    country: 'Netherlands',
+    city: 'Rotterdam',
+    hotel: 'King Kong Hostel',
+  },
+  {
+    country: 'Marocco',
+    city: 'Ourika',
+    hotel: 'Rokoko Hotel',
+  },
+  {
+    country: 'Germany',
+    city: 'Berlin',
+    hotel: 'Hotel Rehberge Berlin Mitte',
+  },
+];
+
+const searchFunction = (str) => {
+  for (let i = 0; i < data.length; i += 1) {
+    const arrayLesson5 = data[i].country + data[i].city + data[i].hotel;
+    if (arrayLesson5.includes(str)) {
+      console.log(data[i]);
+    }
+  }
+  return;
+};
+
+searchFunction('Rokoko Hotel');
