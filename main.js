@@ -124,16 +124,12 @@ p.forEach((item) => {
 
 // lesson 5
 
-const transformDate = (date) => {
-  const arrayDate = date.split('-').reverse();
-  for (let i = 0; i < arrayDate.length; i += 1) {
-    const newDate = arrayDate.join('.');
-    console.log(newDate);
-    return newDate;
-  }
+const reverseDate = (date) => {
+  const newDate = date.split('-').reverse().join('.');
+  console.log(newDate);
 };
 
-transformDate('2020-11-26');
+reverseDate('2020-11-26');
 
 const data = [
   {
@@ -185,7 +181,6 @@ const searchFunction = (str) => {
       console.log(data[i]);
     }
   }
-  return;
 };
 
 searchFunction('Rokoko Hotel');
