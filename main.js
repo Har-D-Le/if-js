@@ -378,3 +378,73 @@ const objCountries = hotels.reduce((acc, item) => {
 }, {});
 
 console.log(objCountries);
+
+// lesson 7
+
+const obj1 = {
+  a: 'a',
+  b: {
+    a: 'a',
+    b: 'b',
+    c: {
+      a: 1,
+    },
+  },
+};
+const obj2 = {
+  b: {
+    c: {
+      a: 1,
+    },
+    b: 'b',
+    a: 'a',
+  },
+  a: 'a',
+};
+const obj3 = {
+  a: {
+    c: {
+      a: 'a',
+    },
+    b: 'b',
+    a: 'a',
+  },
+  b: 'b',
+};
+
+const deepEqual = (a, b) => {
+  const isArgObjects = typeof a === 'object' && typeof b === 'object';
+  const isArgNotNull = a !== null && b !== null;
+
+  if (!isArgObjects || !isArgNotNull) {
+    return false;
+  }
+
+  const aKeys = Object.keys(a);
+  const bKeys = Object.keys(b);
+
+  if (aKeys.length !== bKeys.length) {
+    return false;
+  }
+
+  for (let key in a) {
+    if (!b.hasOwnProperty(key)) {
+      return false;
+    }
+
+    if (typeof a[key] === 'object' && typeof b[key] === 'object') {
+      const result = deepEqual(a[key], b[key]);
+      if (!result) {
+        return false;
+      }
+    } else if (a[key] !== b[key]) {
+      return false;
+    }
+  }
+
+  return true;
+};
+
+console.log(deepEqual(obj1, obj2));
+console.log(deepEqual(obj1, obj3));
+console.log(deepEqual(null, obj3));
