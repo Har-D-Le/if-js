@@ -508,13 +508,50 @@ class Students {
     return this.students
       .sort((student1, student2) => new Student(student1).course - new Student(student2).course)
       .map(
-        (studentt) =>
-          `${new User(studentt).fullName} - ${new Student(studentt).courseName} -  ${
-            new Student(studentt).course
+        (student) =>
+          `${new User(student).fullName} - ${new Student(student).courseName} -  ${
+            new Student(student).course
           }`,
       );
   }
 }
 
-const students = new Students(studentsData);
-console.log(students.getInfo());
+const colorsL9 = {
+  data: ['magenta', 'cyan', 'firebrick', 'springgreen', 'skyblue'],
+};
+
+colorsL9[Symbol.iterator] = function () {
+  let index = 0;
+  let data = this.data;
+  let last = this.data.length;
+
+  return {
+    next() {
+      if (index < last) {
+        return {
+          done: false,
+          value: data[index++],
+        };
+      } else {
+        index = 0;
+        return {
+          done: false,
+          value: data[index++],
+        };
+      }
+    },
+  };
+};
+
+const changeColor = (item) => {
+  return (event) => {
+    event.target.style.color = item.next().value;
+  };
+};
+
+const pL9 = document.querySelectorAll('p');
+
+pL9.forEach((item) => {
+  let iterator = colors[Symbol.iterator]();
+  item.addEventListener('click', changeColor(iterator));
+});
