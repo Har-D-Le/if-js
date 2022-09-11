@@ -449,6 +449,8 @@ console.log(deepEqual(obj1, obj2));
 console.log(deepEqual(obj1, obj3));
 console.log(deepEqual(null, obj3));
 
+// lessin 8
+
 const studentsData = [
   {
     firstName: 'Василий',
@@ -515,6 +517,8 @@ class Students {
       );
   }
 }
+
+// lesson 9
 
 const colorsL9 = {
   data: ['magenta', 'cyan', 'firebrick', 'springgreen', 'skyblue'],
