@@ -315,6 +315,7 @@ input::-webkit-calendar-picker-indicator {
   width: 26%;
   border-radius: 8px;
   border: none;
+  outline-color: #f5bd41;
 }
 
 .search {
@@ -324,6 +325,77 @@ input::-webkit-calendar-picker-indicator {
   color: #ffffff;
 }
 
+.visible {
+  display: flex !important;
+}
+
+.contextMenu {
+  width: 13.6rem;
+  background-color: #ffffff;
+  display: none;
+  flex-direction: column;
+  padding: 22px;
+  font-size: 16px;
+  border-radius: 8px;
+  position: absolute;
+  right: 12rem;
+  top: 21rem;
+}
+
+.contextMenu-bottom {
+  display: none;
+}
+
+.contextMenu-Item-Wrapper {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+
+.contextMenu-Item:first-child {
+  margin: 0;
+}
+
+.contextMenu-input {
+  width: 19px;
+  height: 29px;
+  border: none;
+  outline: none;
+}
+
+.contextMenu-Item {
+  align-self: center;
+  margin: 0 20px;
+}
+
+.contextMenu-InnerItemWrapper {
+  display: flex;
+}
+
+.contextMenu-btn {
+  width: 30px;
+  height: 30px;
+  justify-content: flex-end;
+  font-size: 18px;
+  color: #3077c6;
+  background-color: #ffffff;
+  border: solid #3077c6;
+  border-radius: 0;
+}
+
+.contextMenu-title {
+  font-size: 12px;
+  margin: 16px 0 12px;
+}
+
+.contextMenu-selector {
+  width: 99px;
+  height: 30px;
+  border-radius: 0;
+  color: #333333;
+  border-color: #3077c6;
+  outline: none;
+}
 .m-form {
   display: none;
 }
