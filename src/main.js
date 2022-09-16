@@ -189,7 +189,7 @@ const btnFuncInc = (mode) => {
       console.log(childrenSelect);
       const select = childrenSelect.cloneNode(true);
       select.classList.add('contextMenu-selector');
-      childrenSelect.after(select);
+      contextMenuBottom.append(select);
     }
     if (childrenValue.value >= 10) {
       btnChildrenInc.disabled = true;
