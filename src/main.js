@@ -257,52 +257,62 @@ btnChildrenDec.addEventListener('click', () => btnFuncDec('children'));
 btnRoomsInc.addEventListener('click', () => btnFuncInc('rooms'));
 btnRoomsDec.addEventListener('click', () => btnFuncDec('rooms'));
 
-// lesson 12
+// lesson 12 & lesson 14
 
-// const homesSection = document.createElement('section');
-// homesSection.className = 'homes';
-// document.body.append(homesSection);
-//
-// const homesContainer = document.createElement('div');
-// homesContainer.className = 'container';
-// homesSection.append(homesContainer);
-//
-// const homesTitle = document.createElement('h2');
-// homesTitle.className = 'homes-h2';
-// homesTitle.innerHTML = 'Homes guests loves';
-// homesContainer.append(homesTitle);
-//
-// const homesContent = document.createElement('div');
-// homesContent.className = 'col-12 col-ss-6 homes-content';
-// homesTitle.after(homesContent);
-//
-// fetch('https://fe-student-api.herokuapp.com/api/hotels/popular')
-//   .then((response) => response.json())
-//   .then((result) => {
-//     console.log(result);
-//     result.slice(0, 4).forEach((item) => {
-//       const homesContentItem = document.createElement('div');
-//       homesContentItem.className = 'col-3 col-ss-3 homes-content-wrap';
-//       homesContent.append(homesContentItem);
-//
-//       const homesContentItemImg = document.createElement('img');
-//       homesContentItemImg.className = 'homes-img';
-//       homesContentItemImg.setAttribute('src', `${item.imageUrl}`);
-//       homesContentItemImg.setAttribute('alt', `${item.name}`);
-//       homesContentItem.append(homesContentItemImg);
-//
-//       const homesContentItemName = document.createElement('div');
-//       homesContentItemName.className = 'homes-item';
-//       homesContentItemName.innerHTML = `${item.name}`;
-//       homesContentItemImg.after(homesContentItemName);
-//
-//       const homesContentItemCountry = document.createElement('div');
-//       homesContentItemCountry.className = 'homes-item-location';
-//       homesContentItemCountry.innerHTML = `${item.city}, ${item.country}`;
-//       homesContentItemName.after(homesContentItemCountry);
-//     });
-//   });
+const homesSection = document.createElement('section');
+homesSection.className = 'homes';
+document.body.append(homesSection);
 
+const homesContainer = document.createElement('div');
+homesContainer.className = 'container';
+homesSection.append(homesContainer);
+
+const homesTitle = document.createElement('h2');
+homesTitle.className = 'homes-h2';
+homesTitle.innerHTML = 'Homes guests loves';
+homesContainer.append(homesTitle);
+
+const homesContent = document.createElement('div');
+homesContent.className = 'col-12 col-ss-6 homes-content';
+homesTitle.after(homesContent);
+
+function dataHomesStorage() {
+  let dataHomes;
+  if (!sessionStorage.getItem('homes')) {
+    dataHomes = fetch('https://fe-student-api.herokuapp.com/api/hotels/popular')
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data);
+      });
+    sessionStorage.setItem('homes', JSON.stringify(dataHomes));
+  } else {
+    dataHomes = JSON.parse(sessionStorage.getItem('homes'));
+    console.log(dataHomes);
+  }
+  dataHomes.slice(0, 4).forEach((item) => {
+    const homesContentItem = document.createElement('div');
+    homesContentItem.className = 'col-3 col-ss-3 homes-content-wrap';
+    homesContent.append(homesContentItem);
+
+    const homesContentItemImg = document.createElement('img');
+    homesContentItemImg.className = 'homes-img';
+    homesContentItemImg.setAttribute('src', `${item.imageUrl}`);
+    homesContentItemImg.setAttribute('alt', `${item.name}`);
+    homesContentItem.append(homesContentItemImg);
+
+    const homesContentItemName = document.createElement('div');
+    homesContentItemName.className = 'homes-item';
+    homesContentItemName.innerHTML = `${item.name}`;
+    homesContentItemImg.after(homesContentItemName);
+
+    const homesContentItemCountry = document.createElement('div');
+    homesContentItemCountry.className = 'homes-item-location';
+    homesContentItemCountry.innerHTML = `${item.city}, ${item.country}`;
+    homesContentItemName.after(homesContentItemCountry);
+  });
+}
+
+dataHomesStorage();
 // lesson 13
 
 const form = document.querySelector('#formHeader');
@@ -366,3 +376,45 @@ form.addEventListener('submit', (event) => {
 });
 
 // lesson 14
+
+// const dataHomesStorage = function () {
+//   let dataHomes;
+//   if (!sessionStorage.getItem('homes')) {
+//     dataHomes = fetch('https://fe-student-api.herokuapp.com/api/hotels/popular')
+//       .then((response) => response.json())
+//       .then((result) => {
+//         console.log(result);
+//       });
+//     sessionStorage.setItem('homes', JSON.stringify(dataHomes));
+//   } else {
+//     dataHomes = JSON.parse(sessionStorage.getItem('homes'));
+//     console.log(dataHomes);
+//   }
+// };
+//
+// fetch('https://fe-student-api.herokuapp.com/api/hotels/popular')
+//     .then((response) => response.json())
+//     .then((result) => {
+//       console.log(result);
+//       result.slice(0, 4).forEach((item) => {
+//         const homesContentItem = document.createElement('div');
+//         homesContentItem.className = 'col-3 col-ss-3 homes-content-wrap';
+//         homesContent.append(homesContentItem);
+//
+//         const homesContentItemImg = document.createElement('img');
+//         homesContentItemImg.className = 'homes-img';
+//         homesContentItemImg.setAttribute('src', `${item.imageUrl}`);
+//         homesContentItemImg.setAttribute('alt', `${item.name}`);
+//         homesContentItem.append(homesContentItemImg);
+//
+//         const homesContentItemName = document.createElement('div');
+//         homesContentItemName.className = 'homes-item';
+//         homesContentItemName.innerHTML = `${item.name}`;
+//         homesContentItemImg.after(homesContentItemName);
+//
+//         const homesContentItemCountry = document.createElement('div');
+//         homesContentItemCountry.className = 'homes-item-location';
+//         homesContentItemCountry.innerHTML = `${item.city}, ${item.country}`;
+//         homesContentItemName.after(homesContentItemCountry);
+//       });
+//     });
