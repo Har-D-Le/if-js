@@ -276,19 +276,18 @@ const homesContent = document.createElement('div');
 homesContent.className = 'col-12 col-ss-6 homes-content';
 homesTitle.after(homesContent);
 
-function dataHomesStorage() {
-  let dataHomes;
-  if (!sessionStorage.getItem('homes')) {
-    dataHomes = fetch('https://fe-student-api.herokuapp.com/api/hotels/popular')
-      .then((response) => response.json())
-      .then((data) => {
-        console.log(data);
-      });
+async function dataHomesStorage() {
+  let dataHomes = sessionStorage.getItem('homes');
+  if (!dataHomes) {
+    dataHomes = await fetch('https://fe-student-api.herokuapp.com/api/hotels/popular').then(
+      (response) => response.json(),
+    );
+    console.log(dataHomes);
     sessionStorage.setItem('homes', JSON.stringify(dataHomes));
   } else {
-    dataHomes = JSON.parse(sessionStorage.getItem('homes'));
-    console.log(dataHomes);
+    JSON.parse(sessionStorage.getItem('homes'));
   }
+
   dataHomes.slice(0, 4).forEach((item) => {
     const homesContentItem = document.createElement('div');
     homesContentItem.className = 'col-3 col-ss-3 homes-content-wrap';
@@ -313,6 +312,7 @@ function dataHomesStorage() {
 }
 
 dataHomesStorage();
+
 // lesson 13
 
 const form = document.querySelector('#formHeader');
