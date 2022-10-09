@@ -559,3 +559,20 @@ pL9.forEach((item) => {
   let iterator = colors[Symbol.iterator]();
   item.addEventListener('click', changeColor(iterator));
 });
+
+// lesson 15
+
+const formL15 = document.querySelector('#formL15');
+const inputL15 = document.querySelector('#inputL15');
+const POSTfile = inputL15.value;
+
+formL15.addEventListener('submit', async (event) => {
+  event.preventDefault();
+  const fetchOptions = {
+    method: 'POST',
+    body: new FormData(formL15),
+  };
+  await fetch('https://fe-student-api.herokuapp.com/api/file', fetchOptions).then((response) =>
+    console.log(response),
+  );
+});
