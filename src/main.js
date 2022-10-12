@@ -341,15 +341,16 @@ const labelDestination = document.querySelector('.label-destination');
 
 const childrenAge = () => {
   const select = document.querySelector('.contextMenu-selector');
-  addEventListener('change', (event) => {
+  select.addEventListener('change', (event) => {
     setChildAge(event);
   });
   console.log(childrenAges);
 };
 
+childrenAge();
+
 form.addEventListener('submit', (event) => {
   event.preventDefault();
-  childrenAge();
   const searchParamsHotel = destination.value.toLowerCase().trim();
   const searchParamsAdult = filterValues.adults;
   const searchParamsChildren = childrenAges.join(',');
