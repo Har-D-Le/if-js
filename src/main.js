@@ -118,6 +118,19 @@
 //
 // pasteItems(data);
 
+// lesson 16
+
+function bubbleSor(arr) {
+  for (let i = arr.length - 1; i > 0; i -= 1) {
+    for (let j = 0; j < i; j += 1) {
+      if (arr[j].name > arr[j + 1].name) {
+        [arr[j], arr[j + 1]] = [arr[j + 1], arr[j]];
+      }
+    }
+  }
+  return arr;
+}
+
 // lesson 11
 
 const peopleInput = document.querySelector('.rooms');
@@ -133,6 +146,10 @@ const btnRoomsDec = document.querySelector('#btnRoomsDec');
 const btnRoomsInc = document.querySelector('#btnRoomsInc');
 const contextMenuBottom = document.querySelector('#contextMenuBottom');
 const childrenSelect = document.querySelector('.contextMenu-selector');
+const childrenAges = [];
+const setChildAge = (event) => {
+  childrenAges.push(event.target.value);
+};
 
 let filterValues = {
   adults: 1,
@@ -186,8 +203,10 @@ const btnFuncInc = (mode) => {
       contextMenuBottom.style.display = 'block';
     }
     if (childrenValue.value > 1) {
-      console.log(childrenSelect);
       const select = childrenSelect.cloneNode(true);
+      select.addEventListener('change', (event) => {
+        setChildAge(event);
+      });
       select.classList.add('contextMenu-selector');
       contextMenuBottom.append(select);
     }
@@ -285,9 +304,9 @@ async function dataHomesStorage() {
     console.log(dataHomes);
     sessionStorage.setItem('homes', JSON.stringify(dataHomes));
   } else {
-    JSON.parse(sessionStorage.getItem('homes'));
+    dataHomes = JSON.parse(sessionStorage.getItem('homes'));
   }
-
+  console.log(dataHomes);
   dataHomes.slice(0, 4).forEach((item) => {
     const homesContentItem = document.createElement('div');
     homesContentItem.className = 'col-3 col-ss-3 homes-content-wrap';
@@ -313,20 +332,34 @@ async function dataHomesStorage() {
 
 dataHomesStorage();
 
-// lesson 13
+// lesson 13 & 16
 
 const form = document.querySelector('#formHeader');
 const destination = document.querySelector('#destination');
 const header = document.querySelector('.start');
 const labelDestination = document.querySelector('.label-destination');
 
+const childrenAge = () => {
+  const select = document.querySelector('.contextMenu-selector');
+  select.addEventListener('change', (event) => {
+    setChildAge(event);
+  });
+  console.log(childrenAges);
+};
+
+childrenAge();
+
 form.addEventListener('submit', (event) => {
   event.preventDefault();
-  const searchParams = destination.value.toLowerCase().trim();
-  const url = `https://fe-student-api.herokuapp.com/api/hotels?search=${searchParams}`;
+  const searchParamsHotel = destination.value.toLowerCase().trim();
+  const searchParamsAdult = filterValues.adults;
+  const searchParamsChildren = childrenAges.join(',');
+  const searchParamsRooms = filterValues.rooms;
+  const url = `https://fe-student-api.herokuapp.com/api/hotels?search=${searchParamsHotel}&adults=${searchParamsAdult}&children=${searchParamsChildren}&rooms=${searchParamsRooms}`;
   fetch(url)
     .then((response) => response.json())
     .then((result) => {
+      bubbleSor(result);
       if (result.length === 0) {
         const homesTitle = document.createElement('h2');
         homesTitle.className = 'homes-h2';
@@ -371,6 +404,9 @@ form.addEventListener('submit', (event) => {
       });
       if (destination.value.length > 0) {
         labelDestination.style.display = 'none';
+      }
+      if ((filterValues.adults === 0) & (filterValues.children > 0)) {
+        alert('Please select adults!');
       }
     });
 });
